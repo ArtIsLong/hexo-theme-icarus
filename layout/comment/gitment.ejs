@@ -1,0 +1,30 @@
+<% if (typeof(script) !== 'undefined' && script) { %>
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>-->
+    <!--<link rel="stylesheet" href="https://billts.site/extra_css/gitment.css">-->
+    <!--<script src="https://billts.site/js/gitment.js"></script>-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    <script>
+        if (document.getElementById("comments")) {
+            var id = decodeURI(window.location.pathname);
+            // if (id.length > 50) {
+            //     id = id.substring(0, 50);
+            // }
+            var gitalk = new Gitalk({
+                id: id,
+                owner: '<%= theme.comment.gitment.owner %>',
+                repo: '<%= theme.comment.gitment.repo %>',
+                admin: ['<%= theme.comment.gitment.owner %>'],
+                // oauth: {
+                    clientID: '<%= theme.comment.gitment.client_id %>',
+                    clientSecret: '<%= theme.comment.gitment.client_secret %>',
+                // },
+                distractionFreeMode: true,  // 类似Facebook的分心模式
+                createIssueManually: false,  // 默认情况下，当登录用户属于用户时，Gitalk会自动为您的每个页面创建相应的github问题admin
+                perPage: 15
+            });
+            gitalk.render('comments')
+        }
+    </script>
+<% } %>

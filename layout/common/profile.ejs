@@ -1,0 +1,87 @@
+<% var profile = theme.customize.profile; %>
+<% var tagCount = site.tags.filter(function(tag) { return tag.length; }).length; %>
+<aside id="profile" class="<%= (theme.customize.profile.fixed ? 'profile-fixed' : '')  %>">
+    <div class="inner profile-inner">
+        <!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+        <!-- 博客广告 -->
+        <!--<ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-4444107320537106"
+             data-ad-slot="5092323001"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        <amp-auto-ads type="adsense"
+                      data-ad-client="ca-pub-4444107320537106">
+        </amp-auto-ads>-->
+        <div class="base-info profile-block">
+            <a href="/"><img id="avatar" src="<%= ( profile.gravatar ? gravatar(profile.gravatar, 128) : url_for(profile.avatar)) %>" /></a>
+            <h2 id="name"><%= profile.author %></h2>
+            <h3 id="title"><%= profile.author_title %></h3>
+            <span id="location"><i class="fas fa-map-marker-alt" style="padding-right: 5px"></i><%= profile.location %></span>
+            <a id="follow" target="_blank" href="<%= profile.follow %>"><%= __('profile.follow') %></a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                <%= site.posts.length %>
+                <span><%= (site.posts.length > 1 ? __('profile.posts') : __('profile.post')) %></span>
+            </div>
+            <div class="article-info-block">
+                <%= tagCount %>
+                <span><%= (tagCount > 1 ? __('profile.tags') : __('profile.tag')) %></span>
+            </div>
+        </div>
+        <% if(theme.customize.social_links) { %>
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    <!--<% var tooltipClass = theme.customize.social_link_tooltip === false ? '' : 'class=tooltip'; %>-->
+                    <!--<% for(var i in theme.customize.social_links) { %>-->
+                    <!--<td>-->
+                        <!--<a href="<%- url_for(theme.customize.social_links[i]) %>" target="_blank" title="<%= i %>" <%= tooltipClass %>>-->
+                            <!--<% if (i=='rss') { %>-->
+                                <!--<i class="fas fa-<%= i %>"></i>-->
+                            <!--<% } else { %>-->
+                                <!--<i class="fab fa-<%= i %>"></i>-->
+                            <!--<% } %>-->
+                        <!--</a>-->
+                    <!--</td>-->
+                    <!--<% } %>-->
+
+                    <td>
+                        <a href="<%= theme.customize.social_links.github%>" target="_blank" title="Github" class="tooltip">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </td>
+
+                    <td>
+                        <a href='<%= theme.customize.social_links.gitee%>' target="_blank" title="Gitee" class="tooltip">
+                            <i class="fab"><img src='https://gitee.com/artislong/artislong/widgets/widget_5.svg' style="height: 25px; margin-bottom: -5px"/></i>
+                        </a>
+                    </td>
+
+                    <td>
+                        <a href='<%= theme.customize.social_links.jianshu%>' target="_blank" title="简书" class="tooltip">
+                            <i class="fab"><span style="height: 25px; margin-bottom: -5px; color: darkorange">简</span></i>
+                        </a>
+                    </td>
+
+                    <td>
+                        <a href="<%= theme.customize.social_links.mail%>" target="_blank" title="E-Mail" class="tooltip">
+                            <i class="fab"><span style="height: 25px; width: 20px; margin-bottom: -5px; color: dodgerblue; font-size: 16px">Mail</span></i>
+                        </a>
+                    </td>
+
+                    <td>
+                        <a href="<%= theme.customize.social_links.rss%>" target="_blank" title="RSS" class="tooltip">
+                            <i class="fas fa-rss"></i>
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <% } %>
+    </div>
+</aside>
